@@ -22,20 +22,6 @@ import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import TestExcel from "./Excel";
-import Test from "./test";
-import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router-dom";
-import { DataProjectView } from "./dataProjectView";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Test />,
-  },
-  {
-    path: "/data-project-view",
-    element: <DataProjectView />,
-  },
-]);
 
 function Copyright(props) {
   return (
@@ -136,28 +122,26 @@ function DashboardContent() {
           </Toolbar>
         </AppBar>
         {/* List Menu */}
-        <BrowserRouter>
-          <Drawer variant="permanent" open={open}>
-            <Toolbar
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                px: [1],
-              }}
-            >
-              <IconButton onClick={toggleDrawer}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </Toolbar>
-            <Divider />
-            <List component="nav">
-              {mainListItems}
-              <Divider sx={{ my: 1 }} />
-              {secondaryListItems}
-            </List>
-          </Drawer>
-        </BrowserRouter>
+        <Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              px: [1],
+            }}
+          >
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <List component="nav">
+            {mainListItems}
+            <Divider sx={{ my: 1 }} />
+            {secondaryListItems}
+          </List>
+        </Drawer>
         <Box
           component="main"
           sx={{
@@ -169,9 +153,46 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}></Grid>
-
-            <RouterProvider router={router} />
+            <Grid container spacing={3}>
+              {/* Chart */}
+              <Grid item xs={12} md={8} lg={9}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 240,
+                  }}
+                >
+                  <Chart />
+                </Paper>
+              </Grid>
+              {/* Recent Deposits */}
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                </Paper>
+              </Grid>
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <Orders />
+                </Paper>
+              </Grid>
+              {/* Test Export Excel */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <TestExcel />
+                </Paper>
+              </Grid>
+            </Grid>
 
             <Copyright sx={{ pt: 4 }} />
           </Container>
