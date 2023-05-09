@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-export const PaymentRequisition = () => {
+export const PaymentRequisitionView = () => {
   return (
     <Box
       component="form"

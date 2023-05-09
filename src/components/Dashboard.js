@@ -25,6 +25,7 @@ import TestExcel from "./Excel";
 import Test from "./test";
 import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router-dom";
 import { DataProjectView } from "./dataProjectView";
+import { PaymentRequisitionProgress } from "./Finance/paymentRequisitionProgress";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/data-project-view",
     element: <DataProjectView />,
+  },
+  {
+    path: "/payment-requisition-process",
+    element: <PaymentRequisitionProgress />,
   },
 ]);
 
