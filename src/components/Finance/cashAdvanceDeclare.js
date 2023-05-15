@@ -16,6 +16,46 @@ export const PaymentRequisitionView = () => {
       <Grid container>
         <Grid container xs={4}>
           <Grid item>
+            <TextField id="outlined" label="CA ID Number" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Supplier (Employee) Name" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Supplier Number" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Department Number" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Project Number" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Date of Request" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Type of Payment" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Mode of Payment" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Request Purpose" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Effective Date" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Advance Amount (IDR)" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Advance Amount (Curr)" defaultValue="" />
+          </Grid>
+          <Grid item>
+            <TextField id="outlined" label="Date of Finance Progress" defaultValue="" />
+          </Grid>
+
+          <Grid item>
             <TextField id="outlined" label="Amount Balance" defaultValue="" />
           </Grid>
           <Grid item>
