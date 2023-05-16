@@ -26,6 +26,7 @@ import Test from "./test";
 import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router-dom";
 import { DataProjectView } from "./dataProjectView";
 import { PaymentRequisitionProgress } from "./Finance/paymentRequisitionProgress";
+import { RequisitionMaterialOrder } from "./Finance/requisitionMaterialOrder";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/payment-requisition-process",
     element: <PaymentRequisitionProgress />,
+  },
+  {
+    path: "/req-material-order",
+    element: <RequisitionMaterialOrder />,
   },
 ]);
 

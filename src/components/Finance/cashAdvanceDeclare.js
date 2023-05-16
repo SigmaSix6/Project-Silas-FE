@@ -31,7 +31,7 @@ export const PaymentRequisitionView = () => {
             <TextField id="outlined" label="Project Number" defaultValue="" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Date of Request" defaultValue="" />
+            <DatePicker id="outlined" label="Date of Request" defaultValue="" />
           </Grid>
           <Grid item>
             <TextField id="outlined" label="Type of Payment" defaultValue="" />
@@ -52,9 +52,8 @@ export const PaymentRequisitionView = () => {
             <TextField id="outlined" label="Advance Amount (Curr)" defaultValue="" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Date of Finance Progress" defaultValue="" />
+            <DatePicker id="outlined" label="Date of Finance Progress" defaultValue="" />
           </Grid>
-
           <Grid item>
             <TextField id="outlined" label="Amount Balance" defaultValue="" />
           </Grid>
