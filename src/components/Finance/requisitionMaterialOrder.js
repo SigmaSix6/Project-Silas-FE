@@ -12,7 +12,7 @@ export const RequisitionMaterialOrder = () => {
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
@@ -29,7 +29,7 @@ export const RequisitionMaterialOrder = () => {
             <TextField id="outlined" label="Project Name" defaultValue="" />
           </Grid>
           <Grid item>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl sx={{ m: 0.5, minWidth: 120 }}>
               <Select id="outlined" label="Customer Name">
                 <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
@@ -49,7 +49,7 @@ export const RequisitionMaterialOrder = () => {
         </Grid>
         <Grid container xs={6}>
           <Grid item>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl xs={{ m: 0.5, minWidth: 120 }}>
               <Select id="outlined" label="Customer Name">
                 <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>

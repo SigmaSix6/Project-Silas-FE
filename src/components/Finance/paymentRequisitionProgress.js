@@ -2,40 +2,45 @@ import { Checkbox, Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Button from "@mui/material/Button";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Divider from "@mui/material/Divider";
+import { useState } from "react";
+// import { styled } from "@mui/system";
 
 export const PaymentRequisitionProgress = () => {
+  const [counter, setCounter] = useState(1);
   return (
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
     >
-      <Grid container>
-        <Grid container xs={3}>
+      <Grid container={true}>
+        <Grid item={true} xs={3}>
           <Grid item>
-            <TextField id="outlined" label="PR Number (Auto)" defaultValue="" />
+            <TextField id="pr_number" label="PR Number (Auto)" defaultValue="" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Effective Date" defaultValue="" />
+            <TextField id="effective_date" label="Effective Date" defaultValue="" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Department User" defaultValue="" />
+            <TextField id="department_user" label="Department User" defaultValue="" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Element Allocation" defaultValue="" />
+            <TextField id="element_allocation" label="Element Allocation" defaultValue="" />
           </Grid>
           <Grid item>
-            <DatePicker id="outlined" label="Finance Date Issue" />
+            <DatePicker id="finance_date" label="Finance Date Issue" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Invoices Received" defaultValue="" />
+            <TextField id="invoices_received" label="Invoices Received" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={3}>
+        <Grid item={true} xs={3}>
           <Grid item>
             <TextField id="outlined" label="Supplier Invoice No" />
           </Grid>
@@ -55,7 +60,7 @@ export const PaymentRequisitionProgress = () => {
             <TextField id="outlined" label="Transfer Fee (IDR)" />
           </Grid>
         </Grid>
-        <Grid container xs={3}>
+        <Grid item={true} xs={3}>
           <Grid item>
             <TextField id="outlined" label="Total IDR" defaultValue="" />
           </Grid>
@@ -72,7 +77,7 @@ export const PaymentRequisitionProgress = () => {
             <TextField id="outlined" label="Business Code" />
           </Grid>
         </Grid>
-        <Grid container xs={3}>
+        <Grid item={true} xs={3}>
           <Grid item>
             <TextField id="outlined" label="Supplier Name" defaultValue="" />
           </Grid>
@@ -96,16 +101,40 @@ export const PaymentRequisitionProgress = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container>
-        <TextField id="outlined" label="Purpose of Req" defaultValue="" />
-        <TextField id="outlined" label="Amount" defaultValue="" />
-        <TextField id="outlined" label="Curr" defaultValue="" />
-        <FormControlLabel control={<Checkbox id="outlined" label="Tax" defaultValue="" />} label="Tax" />
-        <TextField id="outlined" label="Currency Today" defaultValue="" />
-        <TextField id="outlined" label="Currency Type" defaultValue="" />
+      <br />
+      <Divider />
+      <br />
+      <Grid container={true}>
+        <Grid item xs={2}>
+          <TextField id="purpose_req_01" label="Purpose of Req" defaultValue="" />
+        </Grid>
+        <Grid item xs={2}>
+          <TextField id="amount_01" label="Amount" defaultValue="" />
+        </Grid>
+        <Grid item xs={2}>
+          <TextField id="curr_01" label="Curr" defaultValue="" />
+        </Grid>
+        <Grid item xs={2}>
+          <FormControlLabel sx={{ m: 1 }} control={<Checkbox id="tax_01" label="Tax" defaultValue="" />} label="Tax" />
+        </Grid>
+        <Grid item xs={2}>
+          <TextField id="curr_today_01" label="Currency Today" defaultValue="" />
+        </Grid>
+        <Grid item xs={2}>
+          <TextField id="curr_type_01" label="Currency Type" defaultValue="" />
+        </Grid>
       </Grid>
-      {/* <TextField id="standard-search" label="Search field" type="search" variant="standard" />
-        <TextField id="standard-helperText" label="Helper text" defaultValue="Default Value" helperText="Some important text" variant="standard" /> */}
+      <Button
+        type="submit"
+        variant="contained"
+        color="inherit"
+        onClick={(e) => {
+          console.log(e.value);
+        }}
+        // className={classes.button}
+      >
+        Login
+      </Button>
     </Box>
   );
 };
