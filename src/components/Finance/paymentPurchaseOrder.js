@@ -14,7 +14,7 @@ export const PaymentPurchaseOrder = () => {
       autoComplete="off"
     >
       <Grid container>
-        <Grid container xs={6}>
+        <Grid item xs={6}>
           <Grid item>
             <TextField id="outlined" label="DOC Number" defaultValue="" />
           </Grid>
@@ -67,7 +67,7 @@ export const PaymentPurchaseOrder = () => {
             <TextField id="outlined" label="All Total (IDR + Curr + Fee)" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={6}>
+        <Grid item xs={6}>
           <Grid item>
             <TextField id="outlined" label="Business Unit" defaultValue="" />
           </Grid>

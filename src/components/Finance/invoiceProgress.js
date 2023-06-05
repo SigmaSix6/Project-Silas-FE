@@ -15,7 +15,7 @@ export const InvoiceProgress = () => {
       autoComplete="off"
     >
       <Grid container>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="ID Number" defaultValue="" />
           </Grid>
@@ -29,7 +29,7 @@ export const InvoiceProgress = () => {
             <Select id="outlined" label="Sales Name" />
           </Grid>
         </Grid>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <Select id="outlined" label="Project Number" />
           </Grid>
@@ -43,7 +43,7 @@ export const InvoiceProgress = () => {
             <TextField id="outlined" label="Company Code" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="Total Amount (IDR)" />
           </Grid>

@@ -18,7 +18,7 @@ export const RequisitionMaterialOrder = () => {
       autoComplete="off"
     >
       <Grid container>
-        <Grid container xs={6}>
+        <Grid item xs={6}>
           <Grid item>
             <DatePicker id="outlined" label="Date" />
           </Grid>
@@ -47,7 +47,7 @@ export const RequisitionMaterialOrder = () => {
             <FormControlLabel control={<Checkbox id="outlined" label="Acceptance Protocol Required" />} label="Acceptance Protocol Required" />
           </Grid>
         </Grid>
-        <Grid container xs={6}>
+        <Grid item xs={6}>
           <Grid item>
             <FormControl xs={{ m: 0.5, minWidth: 120 }}>
               <Select id="outlined" label="Customer Name">

@@ -14,7 +14,7 @@ export const InputStatementBank = () => {
       autoComplete="off"
     >
       <Grid container>
-        <Grid container xs={6}>
+        <Grid item xs={6}>
           <Grid item>
             <TextField id="outlined" label="ID Number (Auto)" defaultValue="" />
           </Grid>
@@ -40,7 +40,7 @@ export const InputStatementBank = () => {
             <TextField id="outlined" label="Finance Description" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={6}>
+        <Grid item xs={6}>
           <Grid item>
             <TextField id="outlined" label="Deposit IDR" defaultValue="" />
           </Grid>

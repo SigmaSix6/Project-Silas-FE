@@ -14,7 +14,7 @@ export const PaymentRequisitionView = () => {
       autoComplete="off"
     >
       <Grid container>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="PR Number" defaultValue="" />
           </Grid>
@@ -49,7 +49,7 @@ export const PaymentRequisitionView = () => {
             <TextField id="outlined" label="Company Code" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <DatePicker id="outlined" label="Target Date" />
           </Grid>
@@ -84,7 +84,7 @@ export const PaymentRequisitionView = () => {
             <TextField id="outlined" label="Finance Progress" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="Balance Payment" defaultValue="" />
           </Grid>

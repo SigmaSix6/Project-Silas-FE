@@ -15,7 +15,7 @@ export const PaymentRequisition = () => {
       autoComplete="off"
     >
       <Grid container>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="PR Number" defaultValue="" />
           </Grid>
@@ -50,7 +50,7 @@ export const PaymentRequisition = () => {
             <Select id="outlined" label="Company Code" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="Total IDR" />
           </Grid>

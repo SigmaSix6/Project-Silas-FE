@@ -14,7 +14,7 @@ export const DataProjectView = () => {
       autoComplete="off"
     >
       <Grid container>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="Project Number" defaultValue="" />
           </Grid>
@@ -49,7 +49,7 @@ export const DataProjectView = () => {
             <TextField id="outlined" label="Project Description" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <DatePicker id="outlined" label="Target Date" />
           </Grid>
@@ -84,7 +84,7 @@ export const DataProjectView = () => {
             <TextField id="outlined" label="Finance Progress" defaultValue="" />
           </Grid>
         </Grid>
-        <Grid container xs={4}>
+        <Grid item xs={4}>
           <Grid item>
             <TextField id="outlined" label="Balance Payment" defaultValue="" />
           </Grid>
