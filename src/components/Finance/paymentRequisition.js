@@ -3,76 +3,85 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useForm, Controller } from "react-hook-form";
 
 export const PaymentRequisition = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {},
+  });
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Box
-      component="form"
+      // component="form"
       sx={{
         "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
     >
-      <Grid container>
-        <Grid item xs={4}>
-          <Grid item>
-            <TextField id="outlined" label="PR Number" defaultValue="" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container>
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PR Number" />} name="pr_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Name" />} name="supplier_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Number" />} name="supplier_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Department Number" />} name="department_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Request Date" />} name="request_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Mode Payment" />} name="mode_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Project Number" />} name="project_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Allocation Dept" />} name="allocation_dept" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Element" />} name="element" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Company Code" />} name="company_code" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <Select id="outlined" label="Supplier Name" defaultValue="" />
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total IDR" />} name="total_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total Currency" />} name="total_currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Tax IDR" />} name="tax_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Tax Currency" />} name="tax_currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Number" />} name="po_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Invoice No" />} name="invoice_no" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <Select id="outlined" label="Supplier Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Department No." defaultValue="" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Date Request" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Type Payment" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Mode Payment" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Project Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Allocation Dept" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Element" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Company Code" defaultValue="" />
-          </Grid>
+          <Button variant="contained" type="submit" color="primary" fullWidth>
+            Submit
+          </Button>
         </Grid>
-        <Grid item xs={4}>
-          <Grid item>
-            <TextField id="outlined" label="Total IDR" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total Currency" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Tax IDR" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Tax Currency" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="PO Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Invoice No" />
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* <TextField id="standard-search" label="Search field" type="search" variant="standard" />
-        <TextField id="standard-helperText" label="Helper text" defaultValue="Default Value" helperText="Some important text" variant="standard" /> */}
+      </form>
     </Box>
   );
 };

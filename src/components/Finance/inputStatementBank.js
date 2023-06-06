@@ -2,8 +2,14 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useForm, Controller } from "react-hook-form";
 
 export const InputStatementBank = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {},
+  });
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Box
       component="form"
@@ -13,50 +19,53 @@ export const InputStatementBank = () => {
       noValidate
       autoComplete="off"
     >
-      <Grid container>
-        <Grid item xs={6}>
-          <Grid item>
-            <TextField id="outlined" label="ID Number (Auto)" defaultValue="" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container>
+          <Grid item xs={6}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="ID Number (Auto)" />} name="id_number_auto" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Bank Name" />} name="bank_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Transaction Date" />} name="transaction_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Remarks" />} name="remarks" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Transaction Code" />} name="transaction_code" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Currency Type" />} name="currency_type" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Cheque or Giro" />} name="cheque_giro" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Finance Description" />} name="finance_description" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Bank Name" defaultValue="" />
+          <Grid item xs={6}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Deposit IDR" />} name="deposit_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Withdrawal IDR" />} name="withdrawal_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Deposit USD" />} name="deposit_usd" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Withdrawal USD" />} name="withdrawal_usd" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Transaction Date" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Remarks" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Transaction Code" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Currency Type" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Cheque or Giro" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Finance Description" defaultValue="" />
-          </Grid>
+          <Button variant="contained" type="submit" color="primary" fullWidth>
+            Submit
+          </Button>
         </Grid>
-        <Grid item xs={6}>
-          <Grid item>
-            <TextField id="outlined" label="Deposit IDR" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Withdrawal IDR" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Deposit USD" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Withdrawal USD" defaultValue="" />
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* <TextField id="standard-search" label="Search field" type="search" variant="standard" />
-        <TextField id="standard-helperText" label="Helper text" defaultValue="Default Value" helperText="Some important text" variant="standard" /> */}
+      </form>
     </Box>
   );
 };

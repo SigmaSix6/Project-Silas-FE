@@ -15,8 +15,43 @@ export const CashAdvance = () => {
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
+      accomodation: "",
+      airport_tax: "",
+      amount_curr: "",
+      company_code: "",
+      currency: "",
+      department_no: "",
+      department_user: "",
+      documentation: "",
+      enterrtainment: "",
+      fee_comission: "",
+      fuel: "",
+      local_material_purchase: "",
+      material_delivery: "",
+      meal: "",
+      mode_payment: "",
+      other: "",
+      others_1: "",
+      others_2: "",
+      others_3: "",
+      others_4: "",
+      others_5: "",
+      park_toll: "",
+      plan_date_on_field: "",
+      plan_date_out_field: "",
+      project_number: "",
+      purpose_of_request: "",
       record_number: "",
-      // select: {},
+      rental_car: "",
+      requisition_date: "",
+      taxi: "",
+      telephone_voucher: "",
+      ticket_airplane: "",
+      ticket_airplane_tram: "",
+      total_currency_request: "",
+      total_idr_request: "",
+      total_manpower_duty: "",
+      type_payment: "",
     },
   });
   const onSubmit = (data) => console.log(data);
@@ -34,138 +69,137 @@ export const CashAdvance = () => {
         <Grid container>
           <Grid item xs={4}>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Record Number" />} name="record_number" control={control} defaultValue="" />
-              {/* <TextField id="outlined" label="Record Number" defaultValue="" /> */}
+              <Controller render={({ field }) => <TextField {...field} label="Record Number" />} name="record_number" control={control} />
             </Grid>
             <Grid item>
-              <Select id="outlined" label="Employee Name" defaultValue="" />
+              <Select label="Employee Name" defaultValue={""} />
             </Grid>
             <Grid item>
-              <Select id="outlined" label="Employee Number" defaultValue="" />
+              <Select label="Employee Number" defaultValue={""} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Department No." defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Department No." />} name="department_no" control={control} />
             </Grid>
             <Grid item>
-              <DatePicker id="outlined" label="Project Number" />
+              <Controller render={({ field }) => <TextField {...field} label="Project Number" />} name="project_number" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Requisition Date" defaultValue="" />
+              <Controller render={({ field }) => <DatePicker {...field} label="Requisition Date" />} name="requisition_date" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Type Payment" />
+              <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Mode Payment" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Mode Payment" />} name="mode_payment" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Purpose of Request" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Purpose of Request" />} name="purpose_of_request" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Total IDR Request" />
+              <Controller render={({ field }) => <TextField {...field} label="Total IDR Request" />} name="total_idr_request" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Total Currency Request" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Total Currency Request" />} name="total_currency_request" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Plan to Date on Field" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Plan to Date on Field" />} name="plan_date_on_field" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Plan to Date out from Field" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Plan to Date on Field" />} name="plan_date_out_field" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Total Manpower On Duty" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Total Manpower On Duty" />} name="total_manpower_duty" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Department User" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Department User" />} name="department_user" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Element Allocation" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Element Allocation" />} name="total_manpower_duty" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Company Code" defaultValue="" />
-            </Grid>
-          </Grid>
-          <Grid item xs={4}>
-            <Grid item>
-              <TextField id="outlined" label="Ticket (Airplane / Tram)" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Airport Tax" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Taxi" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Meal" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Accomodation" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Park / Toll" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Documentation" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Fee Commission" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Local Material Purchase" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Material Delivery" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Rental Car" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Fuel" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Telephone Voucher" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Others" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Others" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Others" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Others" defaultValue="" />
-            </Grid>
-            <Grid item>
-              <TextField id="outlined" label="Others" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Company Code" />} name="company_code" control={control} />
             </Grid>
           </Grid>
           <Grid item xs={4}>
             <Grid item>
-              <TextField id="outlined" label="Currency" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Ticket (Airplane / Tram)" />} name="ticket_airplane_tram" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Amount of Curr" defaultValue="" />
+              <Controller render={({ field }) => <TextField {...field} label="Airport Tax" />} name="airport_tax" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Accomodation" />
+              <Controller render={({ field }) => <TextField {...field} label="Taxi" />} name="taxi" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Ticket (Airplane)" />
+              <Controller render={({ field }) => <TextField {...field} label="Meal" />} name="meal" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Meal" />
+              <Controller render={({ field }) => <TextField {...field} label="Accomodation" />} name="accomodation" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Entertainment" />
+              <Controller render={({ field }) => <TextField {...field} label="Park / Toll" />} name="park_toll" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Taxi" />
+              <Controller render={({ field }) => <TextField {...field} label="Documentation" />} name="documentation" control={control} />
             </Grid>
             <Grid item>
-              <TextField id="outlined" label="Other" />
+              <Controller render={({ field }) => <TextField {...field} label="Fee Comission" />} name="fee_comission" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Local Material Purchase" />} name="local_material_purchase" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Material Delivery" />} name="material_delivery" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Rental Car" />} name="rental_car" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Fuel" />} name="fuel" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Telephone Voucher" />} name="telephone_voucher" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Others 1" />} name="others_1" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Others 2" />} name="others_2" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Others 3" />} name="others_3" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Others 4" />} name="others_4" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Others 5" />} name="others_5" control={control} />
+            </Grid>
+          </Grid>
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Currency" />} name="currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Amount of Curr" />} name="amount_curr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Accomodation" />} name="accomodation" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Ticket (Airplane)" />} name="ticket_airplane" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Meal" />} name="meal" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Entertainment" />} name="entertainment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Taxi" />} name="taxi" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Other" />} name="other" control={control} />
             </Grid>
           </Grid>
           <Button variant="contained" type="submit" color="primary" fullWidth>

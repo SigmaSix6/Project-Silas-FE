@@ -6,135 +6,134 @@ import Button from "@mui/material/Button";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Divider from "@mui/material/Divider";
 import { useState } from "react";
-// import { styled } from "@mui/system";
+import { useForm, Controller } from "react-hook-form";
 
 export const PaymentRequisitionProgress = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {},
+  });
+  const onSubmit = (data) => console.log(data);
+
   const [counter, setCounter] = useState(1);
   return (
     <Box
-      component="form"
+      // component="form"
       sx={{
         "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
     >
-      <Grid container={true}>
-        <Grid item={true} xs={3}>
-          <Grid item>
-            <TextField id="pr_number" label="PR Number (Auto)" defaultValue="" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container={true}>
+          <Grid item={true} xs={3}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PR Number (Auto)" />} name="pr_number_auto" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Effective Date" />} name="effective_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Department User" />} name="department_user" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Element Allocation" />} name="element_allocation" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Finance Date Issue" />} name="finance_date_issue" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Invoices Received" />} name="invoices_received" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="effective_date" label="Effective Date" defaultValue="" />
+          <Grid item={true} xs={3}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Invoice No" />} name="supplier_invoice_no" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Bank Beneficiary No" />} name="bank_beneficiary_no" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Bank Debet No" />} name="bank_debet_no" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Giro Cheque No" />} name="giro_cheque_no" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Paid Date" />} name="paid_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Transfer Fee (IDR)" />} name="transfer_fee_idr" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="department_user" label="Department User" defaultValue="" />
+          <Grid item={true} xs={3}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total IDR" />} name="total_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total Currency" />} name="total_currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Tax IDR" />} name="tax_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Tax Currency" />} name="tax_currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Business Code" />} name="business_code" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="element_allocation" label="Element Allocation" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="finance_date" label="Finance Date Issue" />
-          </Grid>
-          <Grid item>
-            <TextField id="invoices_received" label="Invoices Received" defaultValue="" />
+          <Grid item={true} xs={3}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Name" />} name="supplier_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Department No" />} name="department_no" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Date Request" />} name="date_request" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Mode Payment" />} name="mode_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Project Number" />} name="project_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Number" />} name="po_number" control={control} />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item={true} xs={3}>
-          <Grid item>
-            <TextField id="outlined" label="Supplier Invoice No" />
+        <br />
+        <Divider />
+        <br />
+        <Grid container={true}>
+          <Grid item xs={2}>
+            <TextField id="purpose_req_01" label="Purpose of Req" />
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Bank Beneficiary No" defaultValue="" />
+          <Grid item xs={2}>
+            <TextField id="amount_01" label="Amount" />
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Bank Debet No" defaultValue="" />
+          <Grid item xs={2}>
+            <TextField id="curr_01" label="Curr" />
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Giro Cheque No" />
+          <Grid item xs={2}>
+            <FormControlLabel sx={{ m: 1 }} control={<Checkbox id="tax_01" label="Tax" />} label="Tax" />
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Paid Date" defaultValue="" />
+          <Grid item xs={2}>
+            <TextField id="curr_today_01" label="Currency Today" />
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Transfer Fee (IDR)" />
-          </Grid>
-        </Grid>
-        <Grid item={true} xs={3}>
-          <Grid item>
-            <TextField id="outlined" label="Total IDR" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total Currency" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Tax IDR" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Tax Currency" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Business Code" />
+          <Grid item xs={2}>
+            <TextField id="curr_type_01" label="Currency Type" />
           </Grid>
         </Grid>
-        <Grid item={true} xs={3}>
-          <Grid item>
-            <TextField id="outlined" label="Supplier Name" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Department No" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Date Request" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Type Payment" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Mode Payment" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Project Number" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="PO Number" />
-          </Grid>
-        </Grid>
-      </Grid>
-      <br />
-      <Divider />
-      <br />
-      <Grid container={true}>
-        <Grid item xs={2}>
-          <TextField id="purpose_req_01" label="Purpose of Req" defaultValue="" />
-        </Grid>
-        <Grid item xs={2}>
-          <TextField id="amount_01" label="Amount" defaultValue="" />
-        </Grid>
-        <Grid item xs={2}>
-          <TextField id="curr_01" label="Curr" defaultValue="" />
-        </Grid>
-        <Grid item xs={2}>
-          <FormControlLabel sx={{ m: 1 }} control={<Checkbox id="tax_01" label="Tax" defaultValue="" />} label="Tax" />
-        </Grid>
-        <Grid item xs={2}>
-          <TextField id="curr_today_01" label="Currency Today" defaultValue="" />
-        </Grid>
-        <Grid item xs={2}>
-          <TextField id="curr_type_01" label="Currency Type" defaultValue="" />
-        </Grid>
-      </Grid>
-      <Button
-        type="submit"
-        variant="contained"
-        color="inherit"
-        onClick={(e) => {
-          console.log(e.value);
-        }}
-        // className={classes.button}
-      >
-        Login
-      </Button>
+        <Button variant="contained" type="submit" color="primary" fullWidth>
+          Submit
+        </Button>
+      </form>
     </Box>
   );
 };

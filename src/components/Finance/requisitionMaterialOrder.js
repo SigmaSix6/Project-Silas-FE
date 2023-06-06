@@ -23,10 +23,10 @@ export const RequisitionMaterialOrder = () => {
             <DatePicker id="outlined" label="Date" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Number" defaultValue="" />
+            <TextField id="outlined" label="Number" />
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Project Name" defaultValue="" />
+            <TextField id="outlined" label="Project Name" />
           </Grid>
           <Grid item>
             <FormControl sx={{ m: 0.5, minWidth: 120 }}>
@@ -38,7 +38,7 @@ export const RequisitionMaterialOrder = () => {
             </FormControl>
           </Grid>
           <Grid item>
-            <TextField id="outlined" label="Customer PO No" defaultValue="" />
+            <TextField id="outlined" label="Customer PO No" />
           </Grid>
           <Grid item>
             <FormControlLabel control={<Checkbox id="outlined" label="Partial Delivery Allowed" />} label="Partial Delivery Allowed" />

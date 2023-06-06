@@ -2,115 +2,124 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useForm, Controller } from "react-hook-form";
 
 export const PaymentPurchaseOrder = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {},
+  });
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Box
-      component="form"
+      // component="form"
       sx={{
         "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
     >
-      <Grid container>
-        <Grid item xs={6}>
-          <Grid item>
-            <TextField id="outlined" label="DOC Number" defaultValue="" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container>
+          <Grid item xs={6}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="DOC Number" />} name="doc_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Number" />} name="po_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Name" />} name="supplier_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Number" />} name="supplier_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Project Number" />} name="project_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Effective Date" />} name="effective_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Transfer Date" />} name="transfer_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Bank Document (To paid)" />} name="bank_document_paid" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Bank Transfer Number" />} name="bank_transfer_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Giro / Cheque Number" />} name="giro_cheque_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total (IDR)" />} name="total_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total (Currency)" />} name="total_currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Currency" />} name="currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="All Total (IDR + Curr)" />} name="total_idr_curr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Transfer Fee (IDR)" />} name="transfer_fee_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Transfer Fee Other (IDR)" />} name="transfer_fee_other_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="All Total (IDR + Curr + Fee)" />} name="total_idr_curr_fee" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="PO Number" defaultValue="" />
+          <Grid item xs={6}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Business Unit" />} name="business_unit" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Department Number" />} name="department_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Request Date" />} name="request_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Mode Payment" />} name="mode_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Type" />} name="po_type" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Description" />} name="po_description" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier INV Number" />} name="supplier_inv_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="INV Date Received" />} name="inv_date_received" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Amount Currency" />} name="po_amount_currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Amount IDR" />} name="po_amount_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total Tax Currency" />} name="total_tax_currency" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total Tax IDR" />} name="total_tax_idr" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Supplier Name" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Supplier Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Project Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Effective Date" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Date of Transfer" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Bank Document (To paid)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Bank Transfer Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Giro / Cheque Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total (IDR)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total (Currency)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Currency" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="All Total (IDR + Curr)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Transfer Fee (IDR)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Transfer Fee Other (IDR)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="All Total (IDR + Curr + Fee)" defaultValue="" />
-          </Grid>
+          <Button variant="contained" type="submit" color="primary" fullWidth>
+            Submit
+          </Button>
         </Grid>
-        <Grid item xs={6}>
-          <Grid item>
-            <TextField id="outlined" label="Business Unit" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Department Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Request Date" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Type Payment" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Mode Payment" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Type of PO" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Description of PO" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Supplier INV Number" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Date Received of INV" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="PO Amount Currency" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="PO Amount IDR" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total Tax Currency" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total Tax IDR" defaultValue="" />
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* <TextField id="standard-search" label="Search field" type="search" variant="standard" />
-        <TextField id="standard-helperText" label="Helper text" defaultValue="Default Value" helperText="Some important text" variant="standard" /> */}
+      </form>
     </Box>
   );
 };

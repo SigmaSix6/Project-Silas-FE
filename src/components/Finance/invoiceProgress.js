@@ -2,67 +2,75 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useForm, Controller } from "react-hook-form";
 
 export const InvoiceProgress = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {},
+  });
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Box
-      component="form"
+      // component="form"
       sx={{
         "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
     >
-      <Grid container>
-        <Grid item xs={4}>
-          <Grid item>
-            <TextField id="outlined" label="ID Number" defaultValue="" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container>
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="ID Number" />} name="id_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Invoice Description" />} name="invoice_description" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Customer Name" />} name="customer_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Sales Name" />} name="sales_name" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <Select id="outlined" label="Invoice Description" defaultValue="" />
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Project Number" />} name="project_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Receipt Type" />} name="receipt_type" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <Select {...field} label="Element Receipts" />} name="element_receipts" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Company Code" />} name="company_code" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Customer Name" defaultValue="" />
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total Amount (IDR)" />} name="total_amount_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total Amount (USD)" />} name="total_amount_usd" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Tax Amount (IDR)" />} name="tax_amount_idr" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Tax Amount (USD)" />} name="tax_amount_usd" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Total Act (IDR)" />} name="total_act_idr" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <Select id="outlined" label="Sales Name" />
-          </Grid>
+          <Button variant="contained" type="submit" color="primary" fullWidth>
+            Submit
+          </Button>
         </Grid>
-        <Grid item xs={4}>
-          <Grid item>
-            <Select id="outlined" label="Project Number" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Type of Receipt" />
-          </Grid>
-          <Grid item>
-            <Select id="outlined" label="Element Receipts" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Company Code" defaultValue="" />
-          </Grid>
-        </Grid>
-        <Grid item xs={4}>
-          <Grid item>
-            <TextField id="outlined" label="Total Amount (IDR)" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total Amount (USD)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Tax Amount (IDR)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Tax Amount (USD)" defaultValue="" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Total Act (IDR)" defaultValue="" />
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* <TextField id="standard-search" label="Search field" type="search" variant="standard" />
-        <TextField id="standard-helperText" label="Helper text" defaultValue="Default Value" helperText="Some important text" variant="standard" /> */}
+      </form>
     </Box>
   );
 };
