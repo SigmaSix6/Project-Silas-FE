@@ -112,22 +112,27 @@ export const PaymentRequisitionProgress = () => {
         <br />
         <Grid container={true}>
           <Grid item xs={2}>
-            <TextField id="purpose_req_01" label="Purpose of Req" />
+            <Controller render={({ field }) => <TextField {...field} label="Purpose of Req" />} name="purpose_req_01" control={control} />
           </Grid>
           <Grid item xs={2}>
-            <TextField id="amount_01" label="Amount" />
+            <Controller render={({ field }) => <TextField {...field} label="Amount" />} name="amount_01" control={control} />
           </Grid>
           <Grid item xs={2}>
-            <TextField id="curr_01" label="Curr" />
+            <Controller render={({ field }) => <TextField {...field} label="Curr" />} name="curr_01" control={control} />
           </Grid>
           <Grid item xs={2}>
-            <FormControlLabel sx={{ m: 1 }} control={<Checkbox id="tax_01" label="Tax" />} label="Tax" />
+            <Controller
+              render={({ field }) => <FormControlLabel sx={{ m: 1 }} control={<Checkbox label="Tax" />} label="Tax" />}
+              name="tax_01"
+              control={control}
+            />
+            {/* <FormControlLabel sx={{ m: 1 }} control={<Checkbox id="tax_01" label="Tax" />} label="Tax" /> */}
           </Grid>
           <Grid item xs={2}>
-            <TextField id="curr_today_01" label="Currency Today" />
+            <Controller render={({ field }) => <TextField {...field} label="Currency Today" />} name="curr_today_01" control={control} />
           </Grid>
           <Grid item xs={2}>
-            <TextField id="curr_type_01" label="Currency Type" />
+            <Controller render={({ field }) => <TextField {...field} label="Currency Type" />} name="curr_type_01" control={control} />
           </Grid>
         </Grid>
         <Button variant="contained" type="submit" color="primary" fullWidth>

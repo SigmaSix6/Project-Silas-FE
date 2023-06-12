@@ -2,102 +2,112 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Button from "@mui/material/Button";
+import { useForm, Controller } from "react-hook-form";
 
 export const PaymentRequisitionView = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {},
+  });
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Box
-      component="form"
+      // component="form"
       sx={{
         "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
     >
-      <Grid container>
-        <Grid item xs={4}>
-          <Grid item>
-            <TextField id="outlined" label="PR Number" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container={true}>
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PR Number" />} name="pr_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Name" />} name="supplier_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Number" />} name="supplier_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Department No." />} name="department_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Date Request" />} name="date_request" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Mode Payment" />} name="mode_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Project Number" />} name="project_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Allocation Dept" />} name="allocation_dept" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Element" />} name="element" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Company Code" />} name="company_code" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Supplier Name" />
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Target Date" />} name="target_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Status" />} name="status" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Approved Code" />} name="approved_code" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Approved Date" />} name="approved_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Entry By" />} name="entry_by" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Update By" />} name="update_by" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Last Update" />} name="last_update" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Customer Name" />} name="customer_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="PO Number" />} name="po_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Due Date" />} name="due_date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Finance Progress" />} name="finance_progress" control={control} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Supplier Number" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Department No." />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Date Request" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Type Payment" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Mode Payment" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Project Number" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Allocation Dept" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Element" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Company Code" />
+          <Grid item xs={4}>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Balance Payment" />} name="balance_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Desc Payment" />} name="desc_payment" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Closed Date" />} name="closed_date" control={control} />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <Grid item>
-            <DatePicker id="outlined" label="Target Date" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Status" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Approved Code" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Approved Date" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Entry By" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Update By" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Last Update" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Customer Name" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="PO Number" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Due Date" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Finance Progress" />
-          </Grid>
-        </Grid>
-        <Grid item xs={4}>
-          <Grid item>
-            <TextField id="outlined" label="Balance Payment" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Desc Payment" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Closed Date" />
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* <TextField id="standard-search" label="Search field" type="search" variant="standard" />
-        <TextField id="standard-helperText" label="Helper text" defaultValue="Default Value" helperText="Some important text" variant="standard" /> */}
+        <Button variant="contained" type="submit" color="primary" fullWidth>
+          Submit
+        </Button>
+      </form>
     </Box>
   );
 };

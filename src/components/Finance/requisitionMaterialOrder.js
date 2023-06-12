@@ -3,82 +3,115 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import { useForm, Controller } from "react-hook-form";
 
 export const RequisitionMaterialOrder = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {},
+  });
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Box
-      component="form"
+      // component="form"
       sx={{
         "& .MuiTextField-root": { m: 0.5 },
       }}
       noValidate
       autoComplete="off"
     >
-      <Grid container>
-        <Grid item xs={6}>
-          <Grid item>
-            <DatePicker id="outlined" label="Date" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container>
+          <Grid item xs={6}>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Date" />} name="date" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Number" />} name="number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Project Name" />} name="project_name" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Customer Name</InputLabel>
+                    <Select {...field} label="Customer Name">
+                      <MenuItem value={10}>Ten</MenuItem>
+                      <MenuItem value={20}>Twenty</MenuItem>
+                      <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                  </FormControl>
+                )}
+                name="customer_name"
+                control={control}
+              />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Customer PO Number" />} name="customer_po_number" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller
+                render={({ field }) => <FormControlLabel control={<Checkbox {...field} />} label="Partial Delivery Allowed" />}
+                name="partial_delivery"
+                control={control}
+              />
+            </Grid>
+            <Grid item>
+              <Controller
+                render={({ field }) => <FormControlLabel control={<Checkbox {...field} />} label="Acceptance Protocol Required" />}
+                name="acceptance_protocol"
+                control={control}
+              />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Number" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Project Name" />
-          </Grid>
-          <Grid item>
-            <FormControl sx={{ m: 0.5, minWidth: 120 }}>
-              <Select id="outlined" label="Customer Name">
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Customer PO No" />
-          </Grid>
-          <Grid item>
-            <FormControlLabel control={<Checkbox id="outlined" label="Partial Delivery Allowed" />} label="Partial Delivery Allowed" />
-          </Grid>
-          <Grid item>
-            <FormControlLabel control={<Checkbox id="outlined" label="Acceptance Protocol Required" />} label="Acceptance Protocol Required" />
+          <Grid item xs={6}>
+            <Grid item>
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Customer Name</InputLabel>
+                    <Select {...field} label="Customer Name">
+                      <MenuItem value={10}>Ten</MenuItem>
+                      <MenuItem value={20}>Twenty</MenuItem>
+                      <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                  </FormControl>
+                )}
+                name="customer_name"
+                control={control}
+              />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Requested Delivery Week" />} name="req_delivery_week" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (1st)" />} name="schedule_01" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (2nd)" />} name="schedule_02" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (3rd)" />} name="schedule_03" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (4th)" />} name="schedule_04" control={control} />
+            </Grid>
+            <Grid item>
+              <Controller render={({ field }) => <TextField {...field} label="Suggested Supplier" />} name="suggested_supplier" control={control} />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid item>
-            <FormControl xs={{ m: 0.5, minWidth: 120 }}>
-              <Select id="outlined" label="Customer Name">
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Requested Delivery Week" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Schedule Delivery (1st)" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Schedule Delivery (2nd)" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Schedule Delivery (3rd)" />
-          </Grid>
-          <Grid item>
-            <DatePicker id="outlined" label="Schedule Delivery (4th)" />
-          </Grid>
-          <Grid item>
-            <TextField id="outlined" label="Suggested Supplier" />
-          </Grid>
-        </Grid>
-      </Grid>
-      {/* <TextField id="standard-search" label="Search field" type="search" variant="standard" />
-        <TextField id="standard-helperText" label="Helper text" defaultValue="Default Value" helperText="Some important text" variant="standard" /> */}
+        <Button variant="contained" type="submit" color="primary" fullWidth>
+          Submit
+        </Button>
+      </form>
     </Box>
   );
 };
