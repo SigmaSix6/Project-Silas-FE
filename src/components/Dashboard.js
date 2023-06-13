@@ -28,6 +28,7 @@ import { DataProjectView } from "./dataProjectView";
 import { PaymentRequisitionProgress } from "./Finance/paymentRequisitionProgress";
 import { RequisitionMaterialOrder } from "./Finance/requisitionMaterialOrder";
 import { CashAdvance } from "./Finance/cashAdvance";
+import { PaymentRequisition } from "./Finance/paymentRequisition";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/data-project-view",
     element: <DataProjectView />,
+  },
+  {
+    path: "/payment-requisition",
+    element: <PaymentRequisition />,
   },
   {
     path: "/payment-requisition-process",

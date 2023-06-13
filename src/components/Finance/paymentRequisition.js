@@ -2,12 +2,39 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
+import Button from "@mui/material/Button";
+import Autocomplete from "@mui/material/Autocomplete";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm, Controller } from "react-hook-form";
+import { useEffect } from "react";
+import { getSupplierData } from "../../utils/server";
 
 export const PaymentRequisition = () => {
+  let data;
+  useEffect(() => {
+    data = getSupplierData();
+  }, []);
+
   const { control, handleSubmit } = useForm({
-    defaultValues: {},
+    defaultValues: {
+      allocation_dept: "",
+      company_code: "",
+      department_number: "",
+      element: "",
+      invoice_no: "",
+      mode_payment: "",
+      po_number: "",
+      pr_number: "",
+      project_number: "",
+      request_date: "",
+      supplier_name: "",
+      supplier_number: "",
+      tax_currency: "",
+      tax_idr: "",
+      total_currency: "",
+      total_idr: "",
+      type_payment: "",
+    },
   });
   const onSubmit = (data) => console.log(data);
 
@@ -27,7 +54,23 @@ export const PaymentRequisition = () => {
               <Controller render={({ field }) => <TextField {...field} label="PR Number" />} name="pr_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Supplier Name" />} name="supplier_name" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <Autocomplete
+                    {...field}
+                    onChange={(event, item) => {
+                      field.onChange(item);
+                    }}
+                    options={[
+                      { label: "The Godfather", id: 1 },
+                      { label: "Pulp Fiction", id: 2 },
+                    ]}
+                    renderInput={(params) => <TextField {...params} label="Supplier Name" />}
+                  />
+                )}
+                name="supplier_name"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Supplier Number" />} name="supplier_number" control={control} />
