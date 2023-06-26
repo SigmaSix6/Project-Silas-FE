@@ -29,6 +29,7 @@ import { PaymentRequisitionProgress } from "./Finance/paymentRequisitionProgress
 import { RequisitionMaterialOrder } from "./Finance/requisitionMaterialOrder";
 import { CashAdvance } from "./Finance/cashAdvance";
 import { PaymentRequisition } from "./Finance/paymentRequisition";
+import { NewSupplier } from "./Logistic/newSupplier";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/cash-advance",
     element: <CashAdvance />,
+  },
+  {
+    path: "/new-supplier",
+    element: <NewSupplier />,
   },
 ]);
 

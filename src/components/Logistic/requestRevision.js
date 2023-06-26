@@ -10,7 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { useForm, Controller } from "react-hook-form";
 
-export const RequisitionMaterialOrder = () => {
+export const RequestRevision = () => {
   const { control, handleSubmit } = useForm({
     defaultValues: {},
   });

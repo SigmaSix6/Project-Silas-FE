@@ -126,7 +126,6 @@ export const PaymentRequisitionProgress = () => {
               name="tax_01"
               control={control}
             />
-            {/* <FormControlLabel sx={{ m: 1 }} control={<Checkbox id="tax_01" label="Tax" />} label="Tax" /> */}
           </Grid>
           <Grid item xs={2}>
             <Controller render={({ field }) => <TextField {...field} label="Currency Today" />} name="curr_today_01" control={control} />
