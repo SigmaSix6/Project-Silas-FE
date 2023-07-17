@@ -11,13 +11,23 @@ import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
 import { useForm, Controller } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { getSupplierData } from "../../utils/server";
+import { getElement, getProjectNumber, getSupplierData } from "../../utils/server";
 
 export const PaymentRequisition = () => {
-  let data;
+  const [supplier, setSupplier] = useState([{}]);
+  const [projectNumber, setProjectNumber] = useState([{}]);
+  const [element, setElement] = useState([{}]);
   const [test, setTest] = useState([{}]);
   useEffect(() => {
-    data = getSupplierData();
+    getSupplierData().then((res) => {
+      setSupplier(res);
+    });
+    getProjectNumber().then((res) => {
+      setProjectNumber(res);
+    });
+    getElement().then((res) => {
+      setElement(res);
+    });
   }, []);
 
   const { control, handleSubmit, unregister } = useForm({
@@ -64,8 +74,13 @@ export const PaymentRequisition = () => {
                   <FormControl sx={{ m: 0.5, minWidth: 210 }}>
                     <InputLabel>Supplier Name</InputLabel>
                     <Select {...field} label="Supplier Name">
-                      <MenuItem value={"A"}>Ahmadi</MenuItem>
-                      <MenuItem value={"B"}>Budi</MenuItem>
+                      {supplier.map((res, idx) => {
+                        return (
+                          <MenuItem key={idx} value={res.supp_name}>
+                            {res.supp_name}
+                          </MenuItem>
+                        );
+                      })}
                     </Select>
                   </FormControl>
                 )}
@@ -125,9 +140,13 @@ export const PaymentRequisition = () => {
                   <FormControl sx={{ m: 0.5, minWidth: 210 }}>
                     <InputLabel>Project Number</InputLabel>
                     <Select {...field} label="Project Number">
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      {projectNumber.map((res, idx) => {
+                        return (
+                          <MenuItem key={idx} value={res.PN_proj_numb}>
+                            {res.PN_proj_numb}
+                          </MenuItem>
+                        );
+                      })}
                     </Select>
                   </FormControl>
                 )}
@@ -158,9 +177,13 @@ export const PaymentRequisition = () => {
                   <FormControl sx={{ m: 0.5, minWidth: 210 }}>
                     <InputLabel>Element</InputLabel>
                     <Select {...field} label="Element">
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      {element.map((res, idx) => {
+                        return (
+                          <MenuItem key={idx} value={res.Ele_desc}>
+                            {res.Ele_desc}
+                          </MenuItem>
+                        );
+                      })}
                     </Select>
                   </FormControl>
                 )}

@@ -11,6 +11,26 @@ const getSupplierData = async () => {
   }
 };
 
+const getProjectNumber = async () => {
+  try {
+    const response = await axios.get("/finance/project-number");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+const getElement = async () => {
+  try {
+    const response = await axios.get("/finance/element");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 // Optionally the request above could also be done as
 // axios
 //   .get("/user", {
@@ -38,4 +58,4 @@ const getSupplierData = async () => {
 //   }
 // }
 
-export { getSupplierData };
+export { getSupplierData, getProjectNumber, getElement };
