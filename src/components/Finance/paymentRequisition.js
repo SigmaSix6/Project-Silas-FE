@@ -11,7 +11,7 @@ import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
 import { useForm, Controller } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { getElement, getProjectNumber, getSupplierData } from "../../utils/server";
+import { getElement, getProjectNumber, getSupplierData, insertPaymentReq } from "../../utils/server";
 
 export const PaymentRequisition = () => {
   const [supplier, setSupplier] = useState([{}]);
@@ -30,7 +30,7 @@ export const PaymentRequisition = () => {
     });
   }, []);
 
-  const { control, handleSubmit, unregister } = useForm({
+  const { control, handleSubmit, unregister, setValue } = useForm({
     defaultValues: {
       allocation_dept: "",
       company_code: "",
@@ -41,7 +41,7 @@ export const PaymentRequisition = () => {
       po_number: "",
       pr_number: "",
       project_number: "",
-      request_date: undefined,
+      request_date: null,
       supplier_name: "",
       supplier_number: "",
       tax_currency: "",
@@ -51,7 +51,10 @@ export const PaymentRequisition = () => {
       type_payment: "",
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    insertPaymentReq(data);
+  };
 
   return (
     <Box
@@ -74,13 +77,14 @@ export const PaymentRequisition = () => {
                   <FormControl sx={{ m: 0.5, minWidth: 210 }}>
                     <InputLabel>Supplier Name</InputLabel>
                     <Select {...field} label="Supplier Name">
-                      {supplier.map((res, idx) => {
-                        return (
-                          <MenuItem key={idx} value={res.supp_name}>
-                            {res.supp_name}
-                          </MenuItem>
-                        );
-                      })}
+                      {supplier.length > 0 &&
+                        supplier.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.supp_name}>
+                              {res.supp_name}
+                            </MenuItem>
+                          );
+                        })}
                     </Select>
                   </FormControl>
                 )}
@@ -96,7 +100,16 @@ export const PaymentRequisition = () => {
             </Grid>
             <Grid item>
               <Controller
-                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Request Date" />}
+                render={({ field }) => (
+                  <DatePicker
+                    {...field}
+                    sx={{ m: 0.5, maxWidth: 210 }}
+                    label="Request Date"
+                    onChange={(e) => {
+                      setValue("request_date", e.ts);
+                    }}
+                  />
+                )}
                 name="request_date"
                 control={control}
               />
@@ -140,13 +153,14 @@ export const PaymentRequisition = () => {
                   <FormControl sx={{ m: 0.5, minWidth: 210 }}>
                     <InputLabel>Project Number</InputLabel>
                     <Select {...field} label="Project Number">
-                      {projectNumber.map((res, idx) => {
-                        return (
-                          <MenuItem key={idx} value={res.PN_proj_numb}>
-                            {res.PN_proj_numb}
-                          </MenuItem>
-                        );
-                      })}
+                      {projectNumber.length > 0 &&
+                        projectNumber.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.PN_proj_numb}>
+                              {res.PN_proj_numb}
+                            </MenuItem>
+                          );
+                        })}
                     </Select>
                   </FormControl>
                 )}
@@ -177,13 +191,14 @@ export const PaymentRequisition = () => {
                   <FormControl sx={{ m: 0.5, minWidth: 210 }}>
                     <InputLabel>Element</InputLabel>
                     <Select {...field} label="Element">
-                      {element.map((res, idx) => {
-                        return (
-                          <MenuItem key={idx} value={res.Ele_desc}>
-                            {res.Ele_desc}
-                          </MenuItem>
-                        );
-                      })}
+                      {element.length > 0 &&
+                        element.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.Ele_desc}>
+                              {res.Ele_desc}
+                            </MenuItem>
+                          );
+                        })}
                     </Select>
                   </FormControl>
                 )}
