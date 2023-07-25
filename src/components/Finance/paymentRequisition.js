@@ -3,12 +3,12 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import InputLabel from "@mui/material/InputLabel";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm, Controller } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { getElement, getProjectNumber, getSupplierData, insertPaymentReq } from "../../utils/server";
@@ -30,7 +30,7 @@ export const PaymentRequisition = () => {
     });
   }, []);
 
-  const { control, handleSubmit, unregister, setValue } = useForm({
+  const { control, handleSubmit, unregister, setValue, getValues } = useForm({
     defaultValues: {
       allocation_dept: "",
       company_code: "",
@@ -53,7 +53,9 @@ export const PaymentRequisition = () => {
   });
   const onSubmit = (data) => {
     console.log(data);
-    insertPaymentReq(data);
+    insertPaymentReq(data).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
@@ -67,7 +69,7 @@ export const PaymentRequisition = () => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="PR Number" />} name="pr_number" control={control} />
             </Grid>
@@ -76,7 +78,14 @@ export const PaymentRequisition = () => {
                 render={({ field }) => (
                   <FormControl sx={{ m: 0.5, minWidth: 210 }}>
                     <InputLabel>Supplier Name</InputLabel>
-                    <Select {...field} label="Supplier Name">
+                    <Select
+                      {...field}
+                      label="Supplier Name"
+                      onChange={(e) => {
+                        setValue("supplier_name", e.target.value);
+                        setValue("supplier_number", supplier.find((ele) => ele.supp_name === e.target.value).supp_number);
+                      }}
+                    >
                       {supplier.length > 0 &&
                         supplier.map((res, idx) => {
                           return (
@@ -93,7 +102,7 @@ export const PaymentRequisition = () => {
               />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Supplier Number" />} name="supplier_number" control={control} />
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Number" disabled={true} />} name="supplier_number" control={control} />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Department Number" />} name="department_number" control={control} />
@@ -105,9 +114,10 @@ export const PaymentRequisition = () => {
                     {...field}
                     sx={{ m: 0.5, maxWidth: 210 }}
                     label="Request Date"
-                    onChange={(e) => {
-                      setValue("request_date", e.ts);
-                    }}
+                    // onChange={(e) => {
+                    //   console.log(typeof getValues("request_date"));
+                    //   setValue("request_date", e);
+                    // }}
                   />
                 )}
                 name="request_date"
@@ -223,15 +233,23 @@ export const PaymentRequisition = () => {
               />
             </Grid>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Total IDR" />} name="total_idr" control={control} />
+              <Controller
+                render={({ field }) => <TextField {...field} label="Total IDR" inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }} />}
+                name="total_idr"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Total Currency" />} name="total_currency" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Tax IDR" />} name="tax_idr" control={control} />
+              <Controller
+                render={({ field }) => <TextField {...field} label="Tax IDR" inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }} />}
+                name="tax_idr"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Tax Currency" />} name="tax_currency" control={control} />
@@ -323,11 +341,9 @@ export const PaymentRequisition = () => {
         >
           Remove Data
         </Button>
-
         <Button variant="contained" type="submit" color="primary" fullWidth>
           Submit
         </Button>
-        {/* </Grid> */}
       </form>
     </Box>
   );
