@@ -38,10 +38,18 @@ export const PaymentPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="Project Number" />} name="project_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Effective Date" />} name="effective_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Effective Date" />}
+                name="effective_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Transfer Date" />} name="transfer_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Transfer Date" />}
+                name="transfer_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Bank Document (To paid)" />} name="bank_document_paid" control={control} />
@@ -100,7 +108,11 @@ export const PaymentPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="Supplier INV Number" />} name="supplier_inv_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="INV Date Received" />} name="inv_date_received" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="INV Date Received" />}
+                name="inv_date_received"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="PO Amount Currency" />} name="po_amount_currency" control={control} />

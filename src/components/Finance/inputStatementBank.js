@@ -29,7 +29,11 @@ export const InputStatementBank = () => {
               <Controller render={({ field }) => <TextField {...field} label="Bank Name" />} name="bank_name" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Transaction Date" />} name="transaction_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Transaction Date" />}
+                name="transaction_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Remarks" />} name="remarks" control={control} />

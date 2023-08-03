@@ -43,7 +43,7 @@ export const CashAdvance = () => {
       purpose_of_request: "",
       record_number: "",
       rental_car: "",
-      requisition_date: "",
+      requisition_date: null,
       taxi: "",
       telephone_voucher: "",
       ticket_airplane: "",
@@ -84,7 +84,11 @@ export const CashAdvance = () => {
               <Controller render={({ field }) => <TextField {...field} label="Project Number" />} name="project_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Requisition Date" />} name="requisition_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Requisition Date" />}
+                name="requisition_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />

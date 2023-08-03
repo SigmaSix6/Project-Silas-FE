@@ -12,6 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm, Controller } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { getElement, getProjectNumber, getSupplierData, insertPaymentReq } from "../../utils/server";
+import TestExcel from "../Excel";
 
 export const PaymentRequisition = () => {
   const [supplier, setSupplier] = useState([{}]);
@@ -30,7 +31,7 @@ export const PaymentRequisition = () => {
     });
   }, []);
 
-  const { control, handleSubmit, unregister, setValue, getValues } = useForm({
+  const { control, handleSubmit, unregister, setValue } = useForm({
     defaultValues: {
       allocation_dept: "",
       company_code: "",
@@ -52,6 +53,7 @@ export const PaymentRequisition = () => {
     },
   });
   const onSubmit = (data) => {
+    data = { ...data, detailLength: test.length };
     console.log(data);
     insertPaymentReq(data).then((res) => {
       console.log(res);

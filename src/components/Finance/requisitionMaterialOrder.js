@@ -29,7 +29,7 @@ export const RequisitionMaterialOrder = () => {
         <Grid container>
           <Grid item xs={6}>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Date" />} name="date" control={control} />
+              <Controller render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Date" />} name="date" control={control} />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Number" />} name="number" control={control} />
@@ -90,19 +90,39 @@ export const RequisitionMaterialOrder = () => {
               />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Requested Delivery Week" />} name="req_delivery_week" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Requested Delivery Week" />}
+                name="req_delivery_week"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (1st)" />} name="schedule_01" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Schedule Delivery (1st)" />}
+                name="schedule_01"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (2nd)" />} name="schedule_02" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Schedule Delivery (2nd)" />}
+                name="schedule_02"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (3rd)" />} name="schedule_03" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Schedule Delivery (3rd)" />}
+                name="schedule_03"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Schedule Delivery (4th)" />} name="schedule_04" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Schedule Delivery (4th)" />}
+                name="schedule_04"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Suggested Supplier" />} name="suggested_supplier" control={control} />

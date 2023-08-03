@@ -89,7 +89,11 @@ export const MaterialPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="Department Number" />} name="department_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Date of Request" />} name="date_request" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Date of Request" />}
+                name="date_request"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller
@@ -166,7 +170,11 @@ export const MaterialPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="Supplier Invoice Number" />} name="supp_invoice_num" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Invoice Receive Date" />} name="invoice_receive_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Invoice Receive Date" />}
+                name="invoice_receive_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Amount Currency" />} name="amount_currency" control={control} />

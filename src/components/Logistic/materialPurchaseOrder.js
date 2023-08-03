@@ -53,7 +53,11 @@ export const MaterialPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="From" />} name="from" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Date of PO" />} name="date_po" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Date of PO" />}
+                name="date_po"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Reff of PO" />} name="reff_po" control={control} />
@@ -106,7 +110,7 @@ export const MaterialPurchaseOrder = () => {
               />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="ETA" />} name="eta" control={control} />
+              <Controller render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="ETA" />} name="eta" control={control} />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Project Name" />} name="project_name" control={control} />
@@ -115,7 +119,7 @@ export const MaterialPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="Customer Name" />} name="customer_name" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="RTO Date" />} name="rto_date" control={control} />
+              <Controller render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="RTO Date" />} name="rto_date" control={control} />
             </Grid>
             <Grid item>
               <Controller

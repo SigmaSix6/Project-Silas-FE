@@ -31,7 +31,11 @@ export const PaymentRequisitionProgress = () => {
               <Controller render={({ field }) => <TextField {...field} label="PR Number (Auto)" />} name="pr_number_auto" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Effective Date" />} name="effective_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Effective Date" />}
+                name="effective_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Department User" />} name="department_user" control={control} />
@@ -60,7 +64,11 @@ export const PaymentRequisitionProgress = () => {
               <Controller render={({ field }) => <TextField {...field} label="Giro Cheque No" />} name="giro_cheque_no" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Paid Date" />} name="paid_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Paid Date" />}
+                name="paid_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Transfer Fee (IDR)" />} name="transfer_fee_idr" control={control} />
@@ -91,7 +99,11 @@ export const PaymentRequisitionProgress = () => {
               <Controller render={({ field }) => <TextField {...field} label="Department No" />} name="department_no" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Date Request" />} name="date_request" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Date Request" />}
+                name="date_request"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />

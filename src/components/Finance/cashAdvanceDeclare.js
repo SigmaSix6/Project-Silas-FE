@@ -50,7 +50,11 @@ export const PaymentRequisitionView = () => {
               <Controller render={({ field }) => <TextField {...field} label="Request Purpose" />} name="request_purpose" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Effective Date" />} name="effective_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Effective Date" />}
+                name="effective_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Advance Amount (IDR)" />} name="advance_amount_idr" control={control} />
@@ -74,10 +78,18 @@ export const PaymentRequisitionView = () => {
               <Controller render={({ field }) => <TextField {...field} label="Return To Cash (Currency)" />} name="return_to_cash_currency" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Effective Date" />} name="effective_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Effective Date" />}
+                name="effective_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Date out in Field" />} name="date_out_field" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Date out in Field" />}
+                name="date_out_field"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Total Employee on Duty" />} name="total_employee_on_duty" control={control} />
@@ -174,7 +186,11 @@ export const PaymentRequisitionView = () => {
               <Controller render={({ field }) => <TextField {...field} label="Desc Payment" />} name="desc_payment" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <DatePicker {...field} label="Closed Date" />} name="closed_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Closed Date" />}
+                name="closed_date"
+                control={control}
+              />
             </Grid>
           </Grid>
           <Button variant="contained" type="submit" color="primary" fullWidth>

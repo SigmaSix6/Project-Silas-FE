@@ -12,38 +12,35 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 
 export const mainListItems = (
   <React.Fragment>
-    <a href="/data-project-view">
-      <ListItemButton>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Data Project View" />
-      </ListItemButton>
-      {/* Add link here */}
-    </a>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
-    <ListItemButton>
+    <ListItemButton to={"/data-project-view"}>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+      <ListItemText primary="Data Project View" />
+    </ListItemButton>
+    <ListItemButton to={"/payment-requisition"}>
+      <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Payment Requisition" />
+    </ListItemButton>
+    <ListItemButton to={"/cash-advance"}>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Cash Advance" />
+    </ListItemButton>
+    <ListItemButton to={"/req-material-order"}>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Req Material Order" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="TBA" />
     </ListItemButton>
   </React.Fragment>
 );

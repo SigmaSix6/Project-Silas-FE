@@ -21,8 +21,6 @@ import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
-import TestExcel from "./Excel";
-import Test from "./test";
 import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router-dom";
 import { DataProjectView } from "./dataProjectView";
 import { PaymentRequisitionProgress } from "./Finance/paymentRequisitionProgress";
@@ -30,11 +28,12 @@ import { RequisitionMaterialOrder } from "./Finance/requisitionMaterialOrder";
 import { CashAdvance } from "./Finance/cashAdvance";
 import { PaymentRequisition } from "./Finance/paymentRequisition";
 import { NewSupplier } from "./Logistic/newSupplier";
+import Main from "./Main";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Test />,
+    element: <Main />,
   },
   {
     path: "/data-project-view",

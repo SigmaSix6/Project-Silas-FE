@@ -1,13 +1,20 @@
 import React, { useRef } from "react";
-import { DownloadTableExcel, downloadExcel } from "react-export-table-to-excel";
+import { DownloadTableExcel, useDownloadExcel } from "react-export-table-to-excel";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Button from "@mui/material/Button";
 
 const TestExcel = () => {
   const tableRef = useRef(null);
+
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: "Test Data",
+    sheet: "Data1",
+  });
 
   // Generate Order Data
   function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -24,9 +31,7 @@ const TestExcel = () => {
 
   return (
     <React.Fragment>
-      <DownloadTableExcel filename="Test Data" sheet="data1" currentTableRef={tableRef.current}>
-        <button> Export excel </button>
-      </DownloadTableExcel>
+      <Button onClick={() => onDownload()}>Export Excel</Button>
       <Table ref={tableRef}>
         <TableHead>
           <TableRow>
