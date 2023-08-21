@@ -2,13 +2,22 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { getBankCode } from "../../utils/server";
 
 export const InputStatementBank = () => {
+  const { bank, setBank } = useState([{}]);
   const { control, handleSubmit } = useForm({
     defaultValues: {},
   });
   const onSubmit = (data) => console.log(data);
+
+  useEffect(() => {
+    getBankCode.then((res) => {
+      setBank(res);
+    });
+  }, []);
 
   return (
     <Box
@@ -26,7 +35,33 @@ export const InputStatementBank = () => {
               <Controller render={({ field }) => <TextField {...field} label="ID Number (Auto)" />} name="id_number_auto" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Bank Name" />} name="bank_name" control={control} />
+              {/* <Controller render={({ field }) => <TextField {...field} label="Bank Name" />} name="bank_name" control={control} /> */}
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Bank Name</InputLabel>
+                    <Select
+                      {...field}
+                      label="Bank Name"
+                      onChange={(e) => {
+                        setValue("bank_code", e.target.value);
+                        // setValue("supplier_number", supplier.find((ele) => ele.supp_name === e.target.value).supp_number);
+                      }}
+                    >
+                      {bank.length > 0 &&
+                        bank.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.code_bank}>
+                              {res.bank_desc}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                )}
+                name="bank_code"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller

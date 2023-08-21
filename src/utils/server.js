@@ -31,6 +31,16 @@ const getElement = async () => {
   }
 };
 
+const getBankCode = async () => {
+  try {
+    const response = await axios.get("/finance/bank-code");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 const insertPaymentReq = async (data) => {
   try {
     const response = await axios.post("/finance/insert-payment-req", data);
@@ -68,4 +78,4 @@ const insertPaymentReq = async (data) => {
 //   }
 // }
 
-export { getSupplierData, getProjectNumber, getElement, insertPaymentReq };
+export { getSupplierData, getProjectNumber, getElement, insertPaymentReq, getBankCode };
