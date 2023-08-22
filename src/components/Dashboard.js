@@ -29,6 +29,7 @@ import { CashAdvance } from "./Finance/cashAdvance";
 import { PaymentRequisition } from "./Finance/paymentRequisition";
 import { NewSupplier } from "./Logistic/newSupplier";
 import Main from "./Main";
+import { InputStatementBank } from "./Finance/inputStatementBank";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/new-supplier",
     element: <NewSupplier />,
+  },
+  {
+    path: "/bank-statement",
+    element: <InputStatementBank />,
   },
 ]);
 
