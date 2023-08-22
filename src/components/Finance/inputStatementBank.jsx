@@ -19,6 +19,16 @@ export const InputStatementBank = () => {
   const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       bank_name: "",
+      transaction_date: null,
+      remarks: "",
+      transaction_code: "",
+      currency_type: "",
+      cheque_giro: "",
+      finance_description: "",
+      deposit_idr: 0,
+      withdrawal_idr: 0,
+      deposit_usd: 0,
+      withdrawal_usd: 0,
     },
   });
   const onSubmit = (data) => console.log(data);
@@ -108,16 +118,16 @@ export const InputStatementBank = () => {
                       <MenuItem key={0} value={"EUR"}>
                         EUR
                       </MenuItem>
-                      <MenuItem key={0} value={"RP"}>
+                      <MenuItem key={1} value={"RP"}>
                         RP
                       </MenuItem>
-                      <MenuItem key={0} value={"USD"}>
+                      <MenuItem key={2} value={"USD"}>
                         USD
                       </MenuItem>
                     </Select>
                   </FormControl>
                 )}
-                name="transaction_code"
+                name="currency_type"
                 control={control}
               />
             </Grid>
