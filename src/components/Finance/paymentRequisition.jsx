@@ -238,7 +238,21 @@ export const PaymentRequisition = () => {
           <Grid item xs={6}>
             <Grid item>
               <Controller
-                render={({ field }) => <TextField {...field} label="Total IDR" inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }} />}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Total IDR"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
                 name="total_idr"
                 control={control}
               />
@@ -248,7 +262,21 @@ export const PaymentRequisition = () => {
             </Grid>
             <Grid item>
               <Controller
-                render={({ field }) => <TextField {...field} label="Tax IDR" inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }} />}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Tax IDR"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
                 name="tax_idr"
                 control={control}
               />
