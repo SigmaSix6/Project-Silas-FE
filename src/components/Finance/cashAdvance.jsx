@@ -2,55 +2,66 @@ import { Grid, Select } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { getEmployee, getSupplierData } from "../../utils/server";
 
 export const CashAdvance = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   watch,
-  //   formState: { errors },
-  // } = useForm();
+  const [employeeName, setEmployeeName] = useState([{}]);
+  const [employeeNumber, setEmployeeNumber] = useState([{}]);
 
-  const { control, handleSubmit } = useForm({
+  useEffect(() => {
+    getEmployee().then((res) => {
+      setEmployeeName(res);
+    });
+    getSupplierData().then((res) => {
+      setEmployeeNumber(res);
+    });
+  }, []);
+
+  const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
-      accomodation: "",
-      airport_tax: "",
-      amount_curr: "",
+      accomodation: 0,
+      airport_tax: 0,
+      amount_curr: 0,
       company_code: "",
       currency: "",
       department_no: "",
       department_user: "",
-      documentation: "",
-      enterrtainment: "",
-      fee_comission: "",
-      fuel: "",
-      local_material_purchase: "",
-      material_delivery: "",
-      meal: "",
+      documentation: 0,
+      element_allocation: "",
+      entertainment: 0,
+      fee_comission: 0,
+      fuel: 0,
+      local_material_purchase: 0,
+      material_delivery: 0,
+      meal: 0,
       mode_payment: "",
-      other: "",
-      others_1: "",
-      others_2: "",
-      others_3: "",
-      others_4: "",
-      others_5: "",
-      park_toll: "",
+      other: 0,
+      others_1: 0,
+      others_2: 0,
+      others_3: 0,
+      others_4: 0,
+      others_5: 0,
+      park_toll: 0,
       plan_date_on_field: "",
       plan_date_out_field: "",
       project_number: "",
       purpose_of_request: "",
       record_number: "",
-      rental_car: "",
+      rental_car: 0,
       requisition_date: null,
-      taxi: "",
-      telephone_voucher: "",
-      ticket_airplane: "",
-      ticket_airplane_tram: "",
-      total_currency_request: "",
-      total_idr_request: "",
-      total_manpower_duty: "",
+      taxi: 0,
+      telephone_voucher: 0,
+      ticket_airplane: 0,
+      ticket_airplane_tram: 0,
+      total_currency_request: 0,
+      total_idr_request: 0,
+      total_manpower_duty: 0,
       type_payment: "",
     },
   });
@@ -72,10 +83,60 @@ export const CashAdvance = () => {
               <Controller render={({ field }) => <TextField {...field} label="Record Number" />} name="record_number" control={control} />
             </Grid>
             <Grid item>
-              <Select label="Employee Name" defaultValue={""} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Employee Name</InputLabel>
+                    <Select
+                      {...field}
+                      label="Employee Name"
+                      // onChange={(e) => {
+                      //   setValue("supplier_name", e.target.value);
+                      //   setValue("supplier_number", supplier.find((ele) => ele.supp_name === e.target.value).supp_number);
+                      // }}
+                    >
+                      {employeeName.length > 0 &&
+                        employeeName.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.empl_name}>
+                              {res.empl_name}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                )}
+                name="employee_name"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Select label="Employee Number" defaultValue={""} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Employee Number</InputLabel>
+                    <Select
+                      {...field}
+                      label="Employee Number"
+                      // onChange={(e) => {
+                      //   setValue("supplier_name", e.target.value);
+                      //   setValue("supplier_number", supplier.find((ele) => ele.supp_name === e.target.value).supp_number);
+                      // }}
+                    >
+                      {employeeNumber.length > 0 &&
+                        employeeNumber.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.supp_name}>
+                              {res.supp_name}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                )}
+                name="employee_number"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Department No." />} name="department_no" control={control} />
@@ -100,25 +161,79 @@ export const CashAdvance = () => {
               <Controller render={({ field }) => <TextField {...field} label="Purpose of Request" />} name="purpose_of_request" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Total IDR Request" />} name="total_idr_request" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Total IDR Request"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="total_idr_request"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Total Currency Request" />} name="total_currency_request" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Total Currency Request"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="total_currency_request"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Plan to Date on Field" />} name="plan_date_on_field" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Plan to Date on Field" />} name="plan_date_out_field" control={control} />
+              <Controller render={({ field }) => <TextField {...field} label="Plan to Date out Field" />} name="plan_date_out_field" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Total Manpower On Duty" />} name="total_manpower_duty" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Total Manpower On Duty"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="total_manpower_duty"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Department User" />} name="department_user" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Element Allocation" />} name="total_manpower_duty" control={control} />
+              <Controller render={({ field }) => <TextField {...field} label="Element Allocation" />} name="element_allocation" control={control} />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Company Code" />} name="company_code" control={control} />
@@ -126,58 +241,382 @@ export const CashAdvance = () => {
           </Grid>
           <Grid item xs={4}>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Ticket (Airplane / Tram)" />} name="ticket_airplane_tram" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Ticket (Airplane / Tram)"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="ticket_airplane_tram"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Airport Tax" />} name="airport_tax" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Airport Tax"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="airport_tax"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Taxi" />} name="taxi" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Taxi"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="taxi"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Meal" />} name="meal" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Meal"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="meal"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Accomodation" />} name="accomodation" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Accomodation"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="accomodation"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Park / Toll" />} name="park_toll" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Park / Toll"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="park_toll"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Documentation" />} name="documentation" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Documentation"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="documentation"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Fee Comission" />} name="fee_comission" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Fee Comission"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="fee_comission"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Local Material Purchase" />} name="local_material_purchase" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Local Material Purchase"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="local_material_purchase"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Material Delivery" />} name="material_delivery" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Material Delivery"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="material_delivery"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Rental Car" />} name="rental_car" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Rental Car"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="rental_car"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Fuel" />} name="fuel" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Fuel"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="fuel"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Telephone Voucher" />} name="telephone_voucher" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Telephone Voucher"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="telephone_voucher"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Others 1" />} name="others_1" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Others 1"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="others_1"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Others 2" />} name="others_2" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Others 2"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="others_2"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Others 3" />} name="others_3" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Others 3"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="others_3"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Others 4" />} name="others_4" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Others 4"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="others_4"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Others 5" />} name="others_5" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Others 5"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="others_5"
+                control={control}
+              />
             </Grid>
           </Grid>
           <Grid item xs={4}>
@@ -185,25 +624,151 @@ export const CashAdvance = () => {
               <Controller render={({ field }) => <TextField {...field} label="Currency" />} name="currency" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Amount of Curr" />} name="amount_curr" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Amount of Curr"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="amount_curr"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Accomodation" />} name="accomodation" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Accomodation"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="accomodation"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Ticket (Airplane)" />} name="ticket_airplane" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Ticket (Airplane)"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="ticket_airplane"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Meal" />} name="meal" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Meal"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="meal"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Entertainment" />} name="entertainment" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Entertainment"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="entertainment"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Taxi" />} name="taxi" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Taxi"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="taxi"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Other" />} name="other" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Other"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="other"
+                control={control}
+              />
             </Grid>
           </Grid>
           <Button variant="contained" type="submit" color="primary" fullWidth>

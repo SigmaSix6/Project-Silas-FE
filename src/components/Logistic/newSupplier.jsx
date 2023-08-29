@@ -6,7 +6,13 @@ import { useForm, Controller } from "react-hook-form";
 
 export const NewSupplier = () => {
   const { control, handleSubmit } = useForm({
-    defaultValues: {},
+    defaultValues: {
+      supplier_name: "",
+      supplier_number: "",
+      address: "",
+      contact_name: "",
+      phone_number: "",
+    },
   });
   const onSubmit = (data) => console.log(data);
 
@@ -35,7 +41,26 @@ export const NewSupplier = () => {
               <Controller render={({ field }) => <TextField {...field} fullWidth label="Contact Name" />} name="contact_name" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} fullWidth label="Phone Number" />} name="phone_number" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Phone Number"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="phone_number"
+                control={control}
+              />
             </Grid>
           </Grid>
         </Grid>

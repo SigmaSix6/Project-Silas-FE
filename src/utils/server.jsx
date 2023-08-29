@@ -61,6 +61,16 @@ const insertPaymentReq = async (data) => {
   }
 };
 
+const getEmployee = async (data) => {
+  try {
+    const response = await axios.get("/finance/employee", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 // Optionally the request above could also be done as
 // axios
 //   .get("/user", {
@@ -88,4 +98,4 @@ const insertPaymentReq = async (data) => {
 //   }
 // }
 
-export { getSupplierData, getProjectNumber, getElement, insertPaymentReq, getBankCode, getBankName };
+export { getSupplierData, getProjectNumber, getElement, insertPaymentReq, getBankCode, getBankName, getEmployee };

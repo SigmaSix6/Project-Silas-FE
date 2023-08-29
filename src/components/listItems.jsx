@@ -12,6 +12,9 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 
 export const mainListItems = (
   <React.Fragment>
+    <ListSubheader component="div" inset>
+      Finance
+    </ListSubheader>
     <ListItemButton to={"/data-project-view"}>
       <ListItemIcon>
         <BarChartIcon />
@@ -89,25 +92,25 @@ export const mainListItems = (
 export const secondaryListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
-      Saved reports
+      Logistic
     </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Current month" />
+      <ListItemText primary="Request Order" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Last quarter" />
+      <ListItemText primary="Material Order" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton to={"/new-supplier"}>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
+      <ListItemText primary="New Supplier" />
     </ListItemButton>
   </React.Fragment>
 );

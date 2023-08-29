@@ -12,7 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useForm, Controller } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { getElement, getProjectNumber, getSupplierData, insertPaymentReq } from "../../utils/server";
-import TestExcel from "../Excel";
+// import TestExcel from "../Excel";
 
 export const PaymentRequisition = () => {
   const [supplier, setSupplier] = useState([{}]);
