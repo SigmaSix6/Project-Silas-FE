@@ -22,7 +22,7 @@ import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router-dom";
-import { DataProjectView } from "./dataProjectView";
+import { DataProjectView } from "./Finance/dataProjectView";
 import { PaymentRequisitionProgress } from "./Finance/paymentRequisitionProgress";
 import { RequisitionMaterialOrder } from "./Finance/requisitionMaterialOrder";
 import { CashAdvance } from "./Finance/cashAdvance";
