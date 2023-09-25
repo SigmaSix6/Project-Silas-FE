@@ -30,6 +30,7 @@ import { PaymentRequisition } from "./Finance/paymentRequisition";
 import { NewSupplier } from "./Logistic/newSupplier";
 import Main from "./Main";
 import { InputStatementBank } from "./Finance/inputStatementBank";
+import { PaymentPurchaseOrder } from "./Finance/paymentPurchaseOrder";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: "/bank-statement",
     element: <InputStatementBank />,
+  },
+  {
+    path: "/payment-purchase-order",
+    element: <PaymentPurchaseOrder />,
   },
 ]);
 

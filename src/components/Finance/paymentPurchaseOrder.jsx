@@ -2,13 +2,51 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Button from "@mui/material/Button";
 import { useForm, Controller } from "react-hook-form";
+import { insertPaymentOrder } from "../../utils/server";
 
 export const PaymentPurchaseOrder = () => {
   const { control, handleSubmit } = useForm({
-    defaultValues: {},
+    defaultValues: {
+      bank_document_paid: "",
+      bank_transfer_number: "",
+      business_unit: "",
+      currency: "",
+      department_number: "",
+      doc_number: "",
+      effective_date: null,
+      giro_cheque_number: "",
+      inv_date_received: null,
+      mode_payment: "",
+      po_amount_currency: "",
+      po_amount_idr: "",
+      po_description: "",
+      po_number: "",
+      po_type: "",
+      project_number: "",
+      request_date: null,
+      supplier_inv_number: "",
+      supplier_name: "",
+      supplier_number: "",
+      total_currency: "",
+      total_idr: "",
+      total_idr_curr: "",
+      total_idr_curr_fee: "",
+      total_tax_currency: "",
+      total_tax_idr: "",
+      transfer_date: null,
+      transfer_fee_idr: "",
+      transfer_fee_other_idr: "",
+      type_payment: "",
+    },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    insertPaymentOrder(data).then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <Box
