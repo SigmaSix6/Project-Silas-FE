@@ -4,9 +4,21 @@ import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Button from "@mui/material/Button";
 import { useForm, Controller } from "react-hook-form";
-import { insertPaymentOrder } from "../../utils/server";
+import { insertPaymentOrder, getSupplierData, getProjectNumber } from "../../utils/server";
+import { useEffect, useState } from "react";
 
 export const PaymentPurchaseOrder = () => {
+  const [supplier, setSupplier] = useState([{}]);
+  const [projectNumber, setProjectNumber] = useState([{}]);
+
+  useEffect(() => {
+    getSupplierData().then((res) => {
+      setSupplier(res);
+    });
+    getProjectNumber().then((res) => {
+      setProjectNumber(res);
+    });
+  }, []);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       bank_document_paid: "",
@@ -67,13 +79,56 @@ export const PaymentPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="PO Number" />} name="po_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Supplier Name" />} name="supplier_name" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Supplier Name</InputLabel>
+                    <Select
+                      {...field}
+                      label="Supplier Name"
+                      onChange={(e) => {
+                        setValue("supplier_name", e.target.value);
+                        setValue("supplier_number", supplier.find((ele) => ele.supp_name === e.target.value).supp_number);
+                      }}
+                    >
+                      {supplier.length > 0 &&
+                        supplier.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.supp_name}>
+                              {res.supp_name}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                )}
+                name="supplier_name"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Supplier Number" />} name="supplier_number" control={control} />
+              <Controller render={({ field }) => <TextField {...field} label="Supplier Number" disabled={true} />} name="supplier_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Project Number" />} name="project_number" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Project Number</InputLabel>
+                    <Select {...field} label="Project Number">
+                      {projectNumber.length > 0 &&
+                        projectNumber.map((res, idx) => {
+                          return (
+                            <MenuItem key={idx} value={res.PN_proj_numb}>
+                              {res.PN_proj_numb}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                )}
+                name="project_number"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller
