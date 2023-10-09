@@ -7,7 +7,7 @@ const getSupplierData = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
   }
 };
 
@@ -17,7 +17,7 @@ const getProjectNumber = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
   }
 };
 
@@ -27,7 +27,7 @@ const getElement = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
   }
 };
 
@@ -37,7 +37,7 @@ const getBankName = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
   }
 };
 
@@ -47,7 +47,7 @@ const getBankCode = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
   }
 };
 
@@ -57,7 +57,7 @@ const insertPaymentReq = async (data) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
   }
 };
 
@@ -67,7 +67,7 @@ const getEmployee = async (data) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
   }
 };
 
@@ -77,7 +77,27 @@ const insertPaymentOrder = async (data) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return error;
+  }
+};
+
+const insertBankActivity = async (data) => {
+  try {
+    const response = await axios.post("/finance/insert-bank-activity", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+const insertCashAdvance = async (data) => {
+  try {
+    const response = await axios.post("/finance/insert-cash-adv", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error;
   }
 };
 
@@ -108,4 +128,15 @@ const insertPaymentOrder = async (data) => {
 //   }
 // }
 
-export { getSupplierData, getProjectNumber, getElement, insertPaymentReq, getBankCode, getBankName, getEmployee, insertPaymentOrder };
+export {
+  getSupplierData,
+  getProjectNumber,
+  getElement,
+  insertPaymentReq,
+  getBankCode,
+  getBankName,
+  getEmployee,
+  insertPaymentOrder,
+  insertBankActivity,
+  insertCashAdvance,
+};

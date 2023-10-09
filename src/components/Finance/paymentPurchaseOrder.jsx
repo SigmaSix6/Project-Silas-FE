@@ -19,7 +19,7 @@ export const PaymentPurchaseOrder = () => {
       setProjectNumber(res);
     });
   }, []);
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       bank_document_paid: "",
       bank_transfer_number: "",
@@ -183,7 +183,11 @@ export const PaymentPurchaseOrder = () => {
               <Controller render={({ field }) => <TextField {...field} label="Department Number" />} name="department_number" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Request Date" />} name="request_date" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Request Date" />}
+                name="request_date"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />

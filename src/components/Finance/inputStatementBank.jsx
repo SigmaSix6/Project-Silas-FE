@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { getBankCode, getBankName } from "../../utils/server";
+import { getBankCode, getBankName, insertBankActivity } from "../../utils/server";
 
 export const InputStatementBank = () => {
   const [bank, setBank] = useState([{}]);
@@ -31,7 +31,11 @@ export const InputStatementBank = () => {
       withdrawal_usd: 0,
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    insertBankActivity(data).then((res) => {
+      console.log(res);
+    });
+  };
 
   useEffect(() => {
     getBankName().then((res) => {
