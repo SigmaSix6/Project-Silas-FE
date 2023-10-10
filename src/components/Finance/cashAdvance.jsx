@@ -34,13 +34,39 @@ export const CashAdvance = () => {
       department_user: "",
       documentation: 0,
       element_allocation: "",
+      employee_name: "",
+      employee_number: "",
       entertainment: 0,
       fee_comission: 0,
+      foreign_accomodation: 0,
+      foreign_entertainment: 0,
+      foreign_meal: 0,
+      foreign_other: 0,
+      foreign_taxi: 0,
+      foreign_ticket_airplane: 0,
       fuel: 0,
       local_material_purchase: 0,
       material_delivery: 0,
       meal: 0,
       mode_payment: "",
+      no_accomodation: 0,
+      no_airport_tax: 0,
+      no_documentation: 0,
+      no_fee_comission: 0,
+      no_fuel: 0,
+      no_local_material_purchase: 0,
+      no_material_delivery: 0,
+      no_meal: 0,
+      no_others_1: 0,
+      no_others_2: 0,
+      no_others_3: 0,
+      no_others_4: 0,
+      no_others_5: 0,
+      no_park_toll: 0,
+      no_rental_car: 0,
+      no_taxi: 0,
+      no_telephone_voucher: 0,
+      no_ticket_airplane_tram: 0,
       other: 0,
       others_1: 0,
       others_2: 0,
@@ -686,7 +712,7 @@ export const CashAdvance = () => {
                     }}
                   />
                 )}
-                name="meal"
+                name="foreign_meal"
                 control={control}
               />
             </Grid>
