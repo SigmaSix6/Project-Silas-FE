@@ -29,7 +29,7 @@ export const CashAdvance = () => {
       airport_tax: 0,
       amount_curr: 0,
       company_code: "",
-      currency: "",
+      currency: 0,
       department_no: "",
       department_user: "",
       documentation: 0,
@@ -74,8 +74,8 @@ export const CashAdvance = () => {
       others_4: 0,
       others_5: 0,
       park_toll: 0,
-      plan_date_on_field: "",
-      plan_date_out_field: "",
+      plan_date_on_field: null,
+      plan_date_out_field: null,
       project_number: "",
       purpose_of_request: "",
       record_number: "",
@@ -92,9 +92,13 @@ export const CashAdvance = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log(data);
-    insertCashAdvance().then((res) => {
+    insertCashAdvance(data).then((res) => {
       console.log(res);
+      if (res.status && res.status === 200) {
+        alert(`Transaction Success (Insert ID: ${res.data.insertId})`);
+      } else {
+        alert(`Transaction Failed`);
+      }
     });
   };
 
@@ -183,10 +187,37 @@ export const CashAdvance = () => {
               />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Type Payment" />} name="type_payment" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Type Payment</InputLabel>
+                    <Select {...field} label="Type Payment">
+                      <MenuItem value={"A"}>Advance</MenuItem>
+                      <MenuItem value={"D"}>Declare</MenuItem>
+                      <MenuItem value={"N"}>Settlement</MenuItem>
+                      <MenuItem value={"P"}>Payment</MenuItem>
+                    </Select>
+                  </FormControl>
+                )}
+                name="type_payment"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Mode Payment" />} name="mode_payment" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Mode Payment</InputLabel>
+                    <Select {...field} label="Mode Payment">
+                      <MenuItem value={"C"}>Cash</MenuItem>
+                      <MenuItem value={"Q"}>Cheque / Giro</MenuItem>
+                      <MenuItem value={"T"}>Transfer</MenuItem>
+                    </Select>
+                  </FormControl>
+                )}
+                name="mode_payment"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Purpose of Request" />} name="purpose_of_request" control={control} />
@@ -234,10 +265,18 @@ export const CashAdvance = () => {
               />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Plan to Date on Field" />} name="plan_date_on_field" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Plan to Date on Field" />}
+                name="plan_date_on_field"
+                control={control}
+              />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Plan to Date out Field" />} name="plan_date_out_field" control={control} />
+              <Controller
+                render={({ field }) => <DatePicker {...field} sx={{ m: 0.5, maxWidth: 210 }} label="Plan to Date out Field" />}
+                name="plan_date_out_field"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller
@@ -264,7 +303,22 @@ export const CashAdvance = () => {
               <Controller render={({ field }) => <TextField {...field} label="Department User" />} name="department_user" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Element Allocation" />} name="element_allocation" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Element Allocation</InputLabel>
+                    <Select {...field} label="Element Allocation">
+                      <MenuItem value={"Cash On Hand"}>Cash On Hand</MenuItem>
+                      <MenuItem value={"Material Local Purchase CA"}>Material Local Purchase CA</MenuItem>
+                      <MenuItem value={"Monthly Operating"}>Monthly Operating</MenuItem>
+                      <MenuItem value={"Petty Cash"}>Petty Cash</MenuItem>
+                      <MenuItem value={"Project Operating"}>Project Operating</MenuItem>
+                    </Select>
+                  </FormControl>
+                )}
+                name="element_allocation"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Company Code" />} name="company_code" control={control} />
@@ -651,7 +705,25 @@ export const CashAdvance = () => {
             </Grid>
             Foreign Currency
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Currency" />} name="currency" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Currency"
+                    inputProps={{ inputMode: "numeric" }}
+                    onChange={(e) => {
+                      let number = parseInt(e.target.value.replaceAll(".", ""));
+                      if (Number.isNaN(number)) {
+                        number = 0;
+                      }
+                      // setValue(field.name, new Intl.NumberFormat("id-EN").format(number));
+                      setValue(field.name, number);
+                    }}
+                  />
+                )}
+                name="currency"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller

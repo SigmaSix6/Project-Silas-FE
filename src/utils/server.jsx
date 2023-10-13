@@ -51,16 +51,6 @@ const getBankCode = async () => {
   }
 };
 
-const insertPaymentReq = async (data) => {
-  try {
-    const response = await axios.post("/finance/insert-payment-req", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return error;
-  }
-};
-
 const getEmployee = async (data) => {
   try {
     const response = await axios.get("/finance/employee", data);
@@ -71,10 +61,20 @@ const getEmployee = async (data) => {
   }
 };
 
+const insertPaymentReq = async (data) => {
+  try {
+    const response = await axios.post("/finance/insert-payment-req", data);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
 const insertPaymentOrder = async (data) => {
   try {
     const response = await axios.post("/finance/insert-payment-order", data);
-    return response.data;
+    return response;
   } catch (error) {
     console.error(error);
     return error;
@@ -84,7 +84,7 @@ const insertPaymentOrder = async (data) => {
 const insertBankActivity = async (data) => {
   try {
     const response = await axios.post("/finance/insert-bank-activity", data);
-    return response.data;
+    return response;
   } catch (error) {
     console.error(error);
     return error;
@@ -94,7 +94,7 @@ const insertBankActivity = async (data) => {
 const insertCashAdvance = async (data) => {
   try {
     const response = await axios.post("/finance/insert-cash-adv", data);
-    return response.data;
+    return response;
   } catch (error) {
     console.error(error);
     return error;

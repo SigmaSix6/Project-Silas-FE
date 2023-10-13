@@ -95,7 +95,22 @@ export const PaymentRequisitionView = () => {
               <Controller render={({ field }) => <TextField {...field} label="Total Employee on Duty" />} name="total_employee_on_duty" control={control} />
             </Grid>
             <Grid item>
-              <Controller render={({ field }) => <TextField {...field} label="Element Allocation" />} name="element_allocation" control={control} />
+              <Controller
+                render={({ field }) => (
+                  <FormControl sx={{ m: 0.5, minWidth: 210 }}>
+                    <InputLabel>Element Allocation</InputLabel>
+                    <Select {...field} label="Element Allocation">
+                      <MenuItem value={"Cash On Hand"}>Cash On Hand</MenuItem>
+                      <MenuItem value={"Material Local Purchase CA"}>Material Local Purchase CA</MenuItem>
+                      <MenuItem value={"Monthly Operating"}>Monthly Operating</MenuItem>
+                      <MenuItem value={"Petty Cash"}>Petty Cash</MenuItem>
+                      <MenuItem value={"Project Operating"}>Project Operating</MenuItem>
+                    </Select>
+                  </FormControl>
+                )}
+                name="element_allocation"
+                control={control}
+              />
             </Grid>
             <Grid item>
               <Controller render={({ field }) => <TextField {...field} label="Cheque or Giro Number" />} name="cheque_giro_number" control={control} />

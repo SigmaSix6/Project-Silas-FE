@@ -34,6 +34,11 @@ export const InputStatementBank = () => {
   const onSubmit = (data) => {
     insertBankActivity(data).then((res) => {
       console.log(res);
+      if (res.status && res.status === 200) {
+        alert(`Transaction Success (Insert ID: ${res.data.insertId})`);
+      } else {
+        alert(`Transaction Failed`);
+      }
     });
   };
 
