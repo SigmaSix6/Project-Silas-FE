@@ -51,6 +51,12 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Payment Purchase Order" />
     </ListItemButton>
+    <ListItemButton to={"/finance-report"}>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Finance Report" />
+    </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <LayersIcon />

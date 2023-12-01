@@ -101,6 +101,36 @@ const insertCashAdvance = async (data) => {
   }
 };
 
+const getProjectNumberReport = async (data) => {
+  try {
+    const response = await axios.get("/finance/report/project-number-report", data);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+const getPaymentPoReport = async (data) => {
+  try {
+    const response = await axios.get("/finance/report/payment-po-report", data);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+const getIncomeSalesReport = async (data) => {
+  try {
+    const response = await axios.get("/finance/report/income-sales-report", data);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
 // Optionally the request above could also be done as
 // axios
 //   .get("/user", {
@@ -139,4 +169,7 @@ export {
   insertPaymentOrder,
   insertBankActivity,
   insertCashAdvance,
+  getProjectNumberReport,
+  getPaymentPoReport,
+  getIncomeSalesReport,
 };
